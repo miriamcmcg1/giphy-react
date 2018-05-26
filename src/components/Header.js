@@ -13,11 +13,14 @@ import Favorite from '@material-ui/icons/Favorite';
 const styles = {
   divStyle: {
     flexGrow: 1,
+    top: '0px',
+    marginBottom: '0px',
+    height: '60px'
   },
   TypographyStyle: {
     flex: 1,
-    textDecoration: 'none',
-    color: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+    textDecoration: 'none'
+    
   },
   IconButtonStyle: {
     marginLeft: -12,
@@ -27,10 +30,13 @@ const styles = {
     color: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   },
   AppBarStyle: {
+    height: '60px',
     backgroundColor: 'black', 
     zIndex:1201, 
     position: 'absolute', 
-    top: 0
+    color: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    top: 0,
+    marginBottom: '0px'
   },
   SearchBarStyle: {
     maxWidth: 800,
@@ -39,7 +45,7 @@ const styles = {
     zIndex: 15,
     top: '50%',
     left: '50%',
-    margin: '-24px 0px 0px -170px'
+    margin: '-26px 0px 0px -170px'
   }
 };
 

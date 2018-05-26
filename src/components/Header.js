@@ -59,8 +59,8 @@ class Header extends Component {
               {this.props.title}
             </Typography>
             <SearchBar
-              onChange={() => console.log("onChange")}
-              onRequestSearch={() => console.log("onRequestSearch")}
+              onChange={query => this.props.onSearchChange(query)}
+              onRequestSearch={(result) => console.log(result)}
               style={styles.SearchBarStyle}
             />
             <IconButton component={Link} to="/favorites" color="secondary" style={styles.IconButtonStyle}>
@@ -74,7 +74,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired
 };
 
 export default Header;

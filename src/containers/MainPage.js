@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Debounce } from 'react-throttle';
 import request from "axios";
 
 import Header from "../components/Header";
@@ -19,8 +19,37 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifs: []
+      gifs: [],
+      query: null
     };
+  }
+
+
+  async componentWillMount() {
+    if(this.state.gifs.length === 0) {
+      const gifs = await this.fetchTrendingGifs();
+      this.setState({query: null, gifs: gifs})
+    }
+  }
+
+  async fetchSearchGifs(query) {
+    let url = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${Constants.API_KEY}&limit=24`;
+
+    const response = await request.get(url);
+    if (response.status === 200) {
+      let gifs = response.data.data.map(gif => {
+        return {
+          url: gif.images.downsized.url,
+          id: gif.id,
+          title: gif.title,
+          titleVisible: false
+        };
+      });
+
+      return gifs;
+    } else {
+      return [];
+    }
   }
 
   async fetchTrendingGifs() {
@@ -43,15 +72,17 @@ class MainPage extends Component {
     }
   }
 
-  async componentWillMount() {
-    const gifs = await this.fetchTrendingGifs();
-    this.setState({ gifs: gifs });
+  async onSearchChange(query) {
+    const gifs = await this.fetchSearchGifs(query);
+    this.setState({query: query, gifs: gifs})
   }
 
   render() {
     return (
       <div>
-        <Header title="GiphyLand" />
+        <Debounce time="150" handler="onSearchChange">
+          <Header title="GiphyLand" onSearchChange={query => this.onSearchChange(query)} />
+        </Debounce>
         <div style={styles.divStyle}>
           <GridGif gifs={this.state.gifs} />
         </div>

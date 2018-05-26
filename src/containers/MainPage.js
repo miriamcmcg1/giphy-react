@@ -19,17 +19,8 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifs: [],
-      query: null
+      gifs: []
     };
-  }
-
-
-  async componentWillMount() {
-    if(this.state.gifs.length === 0) {
-      const gifs = await this.fetchTrendingGifs();
-      this.setState({query: null, gifs: gifs})
-    }
   }
 
   async fetchSearchGifs(query) {
@@ -73,8 +64,20 @@ class MainPage extends Component {
   }
 
   async onSearchChange(query) {
-    const gifs = await this.fetchSearchGifs(query);
-    this.setState({query: query, gifs: gifs})
+    if(!query) {
+      const gifs = await this.fetchTrendingGifs();
+      this.setState({gifs: gifs});
+    } else {
+      const gifs = await this.fetchSearchGifs(query);
+      this.setState({gifs: gifs});
+    }
+  }
+
+  async componentWillMount() {
+    if(this.state.gifs.length === 0) {
+      const gifs = await this.fetchTrendingGifs();
+      this.setState({gifs: gifs})
+    }
   }
 
   render() {

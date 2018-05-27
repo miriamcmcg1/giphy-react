@@ -7,7 +7,8 @@ npm install
 
 npm start
 ```
-
+Too see a live demo:
+https://miriamcmcg1.github.io/giphy-react/#/
 ## Features
 - See trending gifs
 - Search for gifs

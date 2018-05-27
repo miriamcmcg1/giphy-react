@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import SampleActionCreators from "../actions/SampleActionCreators";
+import SampleStore from "../stores/SampleStore";
 
 import PropTypes from "prop-types";
-
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import FavIcon from "@material-ui/icons/FavoriteBorder";
+import Favorite from "@material-ui/icons/Favorite";
 
 const styles = {
   divStyle: {
@@ -28,10 +30,37 @@ const styles = {
 };
 
 class GridGif extends Component {
+
+  static getStores() {
+    return [SampleStore];
+  }
+
+  static calculateState() {
+    const faves = SampleStore.getState().favorites;
+    let gifs = [];
+    for (const key of Object.keys(faves)) {
+      gifs.push(faves[key]);
+    }
+    console.log(gifs);
+    return {
+      favourites: gifs
+    };
+  }
+
   setTitleVisible(idx, visible) {
     const gifs = this.props.gifs.slice();
     gifs[idx].titleVisible = visible;
     this.forceUpdate();
+  }
+
+  setFavorite(idx, gif) {
+    const gifs = this.props.gifs.slice();
+    gifs[idx].favorite = !gifs[idx].favorite;
+    this.forceUpdate();  
+    if(gifs[idx].favorite)
+      SampleActionCreators.AddFavourite(gif);
+    else 
+      SampleActionCreators.RemFavourite(gif);
   }
 
   render() {
@@ -51,8 +80,8 @@ class GridGif extends Component {
                 title={gif.titleVisible ? gif.title : null}
                 titlePosition="top"
                 actionIcon={
-                  <IconButton style={styles.iconStyle}>
-                    <FavIcon />
+                  <IconButton onClick={() => this.setFavorite(idx, gif)} style={styles.iconStyle}>
+                    {gif.favorite ? (<Favorite/>) : (<FavIcon/>)}
                   </IconButton>
                 }
                 actionPosition="left"

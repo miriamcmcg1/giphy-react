@@ -5,26 +5,18 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 class SampleStore extends ReduceStore {
   getInitialState() {
     return {
-      title: "Title", 
-      subtitle: "Subtitle", 
-      text: "Text",
-      count: 0
+     favorites: {}
     };
   }
 
   reduce(state, action) {
     switch (action.type) {
-      case ActionTypes.TYPE_001:
+      case ActionTypes.ADD_FAVORITES:
+        state.favorites[action.gif.id] = action.gif;
         return state;
-      case ActionTypes.TYPE_002:
-        const newCount = state.count + 1;
-        const result = {
-          title: action.data.title,
-          subtitle: action.data.subtitle,
-          text: "Action Creator is called " + newCount  + " times.",
-          count: newCount
-        }
-        return result;
+      case ActionTypes.REM_FAVORITES:
+        delete state.favorites[action.gif.id];
+        return state;
       default:
         return state;
     }

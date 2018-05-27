@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Favorites from './Favorites';
+import Favorites from '../containers/Favorites';
 import MainPage from '../containers/MainPage';
 
 

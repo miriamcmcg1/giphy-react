@@ -35,7 +35,6 @@ const styles = {
     backgroundColor: "black",
     zIndex: 1201,
     position: "absolute",
-    color: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     top: 0,
     marginBottom: "0px"
   },
@@ -46,13 +45,15 @@ const styles = {
     zIndex: 15,
     top: "50%",
     left: "50%",
-    margin: "-26px 0px 0px -170px"
+    margin: "-26px 0px 0px -170px",
+    borderRadius: "27px",
+    color: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
   }
 };
 
 class Header extends Component {
   render() {
-    const renderButton = this.props.isHomePage ?
+    const renderIcon = this.props.isHomePage ?
     (<IconButton component={Link} to="/favorites" color="secondary" style={styles.IconButtonStyle}>
         <Favorite style={styles.IconStyle} />
       </IconButton>) : (
@@ -67,12 +68,12 @@ class Header extends Component {
             <Typography color="inherit" variant="title" style={styles.TypographyStyle}>
               {this.props.title}
             </Typography>
-            <SearchBar
+            {this.props.isHomePage ?  
+            (<SearchBar
               onChange={query => this.props.onSearchChange(query)}
               onRequestSearch={(result) => console.log(result)}
-              style={styles.SearchBarStyle}
-            />
-            {renderButton}
+              style={styles.SearchBarStyle}/>) : (null)}
+            {renderIcon}
           </Toolbar>
         </AppBar>
       </div>
@@ -82,7 +83,7 @@ class Header extends Component {
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func,
   isHomePage: PropTypes.bool.isRequired
 };
 

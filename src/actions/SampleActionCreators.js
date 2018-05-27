@@ -2,25 +2,17 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import ActionTypes from '../constants/AppConstants';
 
 const SampleActionCreators = {
-
-  action001(arg1) {
-    // 1. Do something. (e.g. Fetch JSON from an API)
-    // 2. Create an action from the result.
-    // 3, Pass the action to the dispatch().
+  AddFavourite(arg1) {
     AppDispatcher.dispatch({
-      type: ActionTypes.TYPE_001,
-      data: 'RESULT OF YOUT ACTION',
+      type: ActionTypes.ADD_FAVORITES,
+      gif: arg1,
     });
   },
 
-  action002(arg1) {
+  RemFavourite(arg1) {
     AppDispatcher.dispatch({
-      type: ActionTypes.TYPE_002,
-      data: {
-        "title": "New Title",
-        "subtitle": "New Subtitle",
-        "text": "New Text"
-      },
+      type: ActionTypes.REM_FAVORITES,
+      gif: arg1,
     });
   },
 

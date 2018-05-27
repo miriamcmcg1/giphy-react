@@ -1,6 +1,6 @@
 const Constants = {
-    TYPE_001: 'type-001',
-    TYPE_002: 'type-002',
+    ADD_FAVORITES: 'AddFavorite',
+    REM_FAVORITES: 'RemFavorite',  
     API_KEY: 'EL25q8AiSHu7hzjxTbOpsiaIJQyITlxB'
   
   }

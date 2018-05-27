@@ -9,6 +9,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Favorite from "@material-ui/icons/Favorite";
+import Home from "@material-ui/icons/Home"
 
 const styles = {
   divStyle: {
@@ -51,11 +52,19 @@ const styles = {
 
 class Header extends Component {
   render() {
+    const renderButton = this.props.isHomePage ?
+    (<IconButton component={Link} to="/favorites" color="secondary" style={styles.IconButtonStyle}>
+        <Favorite style={styles.IconStyle} />
+      </IconButton>) : (
+      <IconButton component={Link} to="/" color="secondary" style={styles.IconButtonStyle}>
+        <Home style={styles.IconStyle} />
+      </IconButton>
+      )
     return (
       <div style={styles.divStyle}>
         <AppBar position="absolute" style={styles.AppBarStyle}>
           <Toolbar>
-            <Typography color="inherit" component={Link} to="/" variant="title" style={styles.TypographyStyle}>
+            <Typography color="inherit" variant="title" style={styles.TypographyStyle}>
               {this.props.title}
             </Typography>
             <SearchBar
@@ -63,9 +72,7 @@ class Header extends Component {
               onRequestSearch={(result) => console.log(result)}
               style={styles.SearchBarStyle}
             />
-            <IconButton component={Link} to="/favorites" color="secondary" style={styles.IconButtonStyle}>
-              <Favorite style={styles.IconStyle} />
-            </IconButton>
+            {renderButton}
           </Toolbar>
         </AppBar>
       </div>
@@ -75,7 +82,8 @@ class Header extends Component {
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired
+  onSearchChange: PropTypes.func.isRequired,
+  isHomePage: PropTypes.bool.isRequired
 };
 
 export default Header;

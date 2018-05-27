@@ -84,7 +84,7 @@ class MainPage extends Component {
     return (
       <div>
         <Debounce time="150" handler="onSearchChange">
-          <Header title="GiphyLand" onSearchChange={query => this.onSearchChange(query)} />
+          <Header title="GiphyLand" isHomePage={true} onSearchChange={query => this.onSearchChange(query)} />
         </Debounce>
         <div style={styles.divStyle}>
           <GridGif gifs={this.state.gifs} />

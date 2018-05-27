@@ -17,7 +17,7 @@ class Favorites extends Component {
     render() {
         return (
         <div>
-            <Header title="Favorites"/>
+            <Header isHomePage={false} title="Favorites"/>
         </div>
         );
     }

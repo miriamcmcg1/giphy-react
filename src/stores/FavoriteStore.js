@@ -4,8 +4,16 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 
 class FavoriteStore extends ReduceStore {
   getInitialState() {
+    var values = {},
+    keys = Object.keys(localStorage),
+    i = keys.length;
+
+    while ( i-- ) {
+        values[JSON.parse(keys[i])]=  JSON.parse(localStorage.getItem(keys[i]));
+    }
+    console.log(values);
     return {
-     favorites: {}
+     favorites: values
     };
   }
 

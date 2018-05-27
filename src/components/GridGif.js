@@ -44,10 +44,13 @@ class GridGif extends Component {
   }
 
   setFavorite(gif) {
-    if (!(gif.id in this.state.favorites))
+    if (!(gif.id in this.state.favorites)) {
       SampleActionCreators.AddFavourite(gif);
-    else
+      localStorage.setItem(JSON.stringify(gif.id), JSON.stringify(gif));
+    } else {
       SampleActionCreators.RemFavourite(gif);
+      localStorage.removeItem(JSON.stringify(gif.id));
+    }
     this.forceUpdate();
   }
 

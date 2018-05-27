@@ -24,6 +24,7 @@ class Favorites extends Component {
     for (const key of Object.keys(faves)) {
       gifs.push(faves[key]);
     }
+    console.log(faves);
     return {
       favourites: gifs
     };

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import SampleActionCreators from "../actions/SampleActionCreators";
-import FavoriteStore from "../stores/FavoriteStore";
 
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -9,6 +8,9 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import FavIcon from "@material-ui/icons/FavoriteBorder";
 import Favorite from "@material-ui/icons/Favorite";
+
+import SampleActionCreators from "../actions/SampleActionCreators";
+import FavoriteStore from "../stores/FavoriteStore";
 
 const styles = {
   divStyle: {
@@ -26,6 +28,13 @@ const styles = {
   },
   iconStyle: {
     color: "white"
+  },
+  imgStyle: {
+    left: "50%",
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    transform: "translateX(-50%)"
   }
 };
 
@@ -34,7 +43,7 @@ class GridGif extends Component {
     super(props);
     this.state = {
       favorites: FavoriteStore.getState().favorites
-    }
+    };
   }
 
   setTitleVisible(idx, visible) {
@@ -66,13 +75,15 @@ class GridGif extends Component {
               cols={1}
               rows={1}
             >
-              <img src={gif.url} alt={gif.title} />
+              <Link to={{ pathname: `/gif/${gif.id}`}}>
+                <img src={gif.url} alt={gif.title} style={styles.imgStyle}  />
+              </Link>
               <GridListTileBar
                 title={gif.titleVisible ? gif.title : null}
                 titlePosition="top"
                 actionIcon={
                   <IconButton onClick={() => this.setFavorite(gif)} style={styles.iconStyle}>
-                    {(gif.id in this.state.favorites) ? <Favorite /> : <FavIcon />}
+                    {gif.id in this.state.favorites ? <Favorite /> : <FavIcon />}
                   </IconButton>
                 }
                 actionPosition="left"

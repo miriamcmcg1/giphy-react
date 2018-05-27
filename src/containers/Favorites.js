@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { Container } from "flux/utils";
+
 import Header from "../components/Header";
 import FavoriteStore from "../stores/FavoriteStore";
 import GridGif from "../components/GridGif";
 
 const styles = {
   divStyle: {
-    //display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
     overflow: "hidden",
+    position: "fixed",
+    top: "60px",
+    right: 0,
+    bottom: 0,
+    left: 0,
+    textAlign: "center",
+    backgroundColor: "black",
   }
 };
 
@@ -24,7 +29,6 @@ class Favorites extends Component {
     for (const key of Object.keys(faves)) {
       gifs.push(faves[key]);
     }
-    console.log(faves);
     return {
       favourites: gifs
     };

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+
 import { Debounce } from 'react-throttle';
 import request from "axios";
 
-import Header from "../components/Header";
+import Header from "./Header";
+import GridGif from "./GridGif";
 import Constants from "../constants/AppConstants";
-import GridGif from "../components/GridGif";
+
 
 const styles = {
   divStyle: {

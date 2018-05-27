@@ -11,7 +11,6 @@ class FavoriteStore extends ReduceStore {
     while ( i-- ) {
         values[JSON.parse(keys[i])]=  JSON.parse(localStorage.getItem(keys[i]));
     }
-    console.log(values);
     return {
      favorites: values
     };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "flux/utils";
 import Header from "../components/Header";
-import SampleStore from "../stores/SampleStore";
+import FavoriteStore from "../stores/FavoriteStore";
 import GridGif from "../components/GridGif";
 
 const styles = {
@@ -15,16 +15,15 @@ const styles = {
 
 class Favorites extends Component {
   static getStores() {
-    return [SampleStore];
+    return [FavoriteStore];
   }
 
   static calculateState() {
-    const faves = SampleStore.getState().favorites;
+    const faves = FavoriteStore.getState().favorites;
     let gifs = [];
     for (const key of Object.keys(faves)) {
       gifs.push(faves[key]);
     }
-    console.log(gifs);
     return {
       favourites: gifs
     };

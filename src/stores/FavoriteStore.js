@@ -2,7 +2,7 @@ import { ReduceStore } from 'flux/utils';
 import ActionTypes from '../constants/AppConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
-class SampleStore extends ReduceStore {
+class FavoriteStore extends ReduceStore {
   getInitialState() {
     return {
      favorites: {}
@@ -23,4 +23,4 @@ class SampleStore extends ReduceStore {
   }
 }
 
-export default new SampleStore(AppDispatcher);
+export default new FavoriteStore(AppDispatcher);

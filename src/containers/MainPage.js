@@ -75,7 +75,7 @@ class MainPage extends Component {
   }
 
   async componentWillMount() {
-    if(this.state.gifs.length === 0) {
+    if (this.state.gifs.length === 0) {
       const gifs = await this.fetchTrendingGifs();
       this.setState({gifs: gifs})
     }

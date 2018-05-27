@@ -25,7 +25,7 @@ class MainPage extends Component {
   }
 
   async fetchSearchGifs(query) {
-    let url = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=${Constants.API_KEY}&limit=24`;
+    let url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${Constants.API_KEY}&limit=24`;
 
     const response = await request.get(url);
     if (response.status === 200) {
@@ -45,7 +45,7 @@ class MainPage extends Component {
   }
 
   async fetchTrendingGifs() {
-    let url = `http://api.giphy.com/v1/gifs/trending?api_key=${Constants.API_KEY}&limit=24`;
+    let url = `https://api.giphy.com/v1/gifs/trending?api_key=${Constants.API_KEY}&limit=24`;
 
     const response = await request.get(url);
     if (response.status === 200) {
